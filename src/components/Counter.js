@@ -1,16 +1,41 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { increment, decrement } from '../actions';
+import styled from 'styled-components';
+
+const FullDiv = styled.div`
+        width: 80%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        button {
+            width: 60%;
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 5px;
+            background-color: rgb(245,245,245);
+
+            &:hover{
+                background-color: darkred;
+            }
+
+        }
+    `;
 
 class Counter extends Component {
     incrementIfOdd = () => {
-        // Stretch Problem: Implement an increment function that
-        // only increments if the counter value is odd
+        if(this.props.count % 2 !== 0 ){
+            this.props.increment();
+        }
     };
 
     incrementAsync = () => {
-        // Stretch Problem: Implement an increment function that
-        // increments after waiting for one second
+        setTimeout(() => {
+            this.props.increment()
+        }, 1000)
     };
 
     render() {
@@ -18,23 +43,23 @@ class Counter extends Component {
         // Upon clicking these buttons, the count
         // should decrement or increment accordingly
         return (
-            <p>
+            <FullDiv>
                 Clicked: {this.props.count} times
-                <button onClick={() => /* Fill me in */ }>
+                <button onClick={(count) => this.props.increment(count) }>
                     +
                 </button>
-                <button onClick={() => /* Fill me in */ }>
+                <button onClick={(count) => this.props.decrement(count) }>
                     -
                 </button>
                  {/* Uncomment these button tags if you got
                 around to implementing the extra credit functions */}
-                {/* <button onClick={this.incrementIfOdd}>
+                 <button onClick={this.incrementIfOdd}>
                     Increment if odd
                 </button>
                 <button onClick={this.incrementAsync}>
                     Increment async
-                </button>  */}
-            </p>
+                </button> 
+            </FullDiv>
         );
     }
 }
