@@ -1,6 +1,29 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { increment, decrement } from '../actions';
+import styled from 'styled-components';
+
+const FullDiv = styled.div`
+        width: 80%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        button {
+            width: 60%;
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 5px;
+            background-color: rgb(245,245,245);
+
+            &:hover{
+                background-color: darkred;
+            }
+
+        }
+    `;
 
 class Counter extends Component {
     incrementIfOdd = () => {
@@ -20,7 +43,7 @@ class Counter extends Component {
         // Upon clicking these buttons, the count
         // should decrement or increment accordingly
         return (
-            <div>
+            <FullDiv>
                 Clicked: {this.props.count} times
                 <button onClick={(count) => this.props.increment(count) }>
                     +
@@ -36,7 +59,7 @@ class Counter extends Component {
                 <button onClick={this.incrementAsync}>
                     Increment async
                 </button> 
-            </div>
+            </FullDiv>
         );
     }
 }
